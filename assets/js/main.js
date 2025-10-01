@@ -50,7 +50,7 @@
   });
   menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-  // Smooth scroll for anchors
+  // Smooth scroll for anchors with 3D entry effect
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
@@ -58,13 +58,21 @@
       const target = document.querySelector(id);
       if (target) {
         e.preventDefault();
+        // Add directional 3D hint class based on relative position
+        const currentY = window.scrollY;
+        const targetY = target.getBoundingClientRect().top + window.scrollY;
+        const dirClass = (targetY > currentY) ? 'enter-from-bottom' : 'enter-from-top';
+        target.classList.add(dirClass);
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         history.pushState(null, '', id);
         // Remove focus so :focus styles don't linger after scroll
         a.blur();
-          // maintain active state updates after smooth scroll
-          setTimeout(bottomObserveUpdate, 50);
-          setTimeout(bottomObserveUpdate, 350);
+        // Clean up the 3D hint after transition
+        const cleanup = () => target.classList.remove('enter-from-top', 'enter-from-bottom');
+        setTimeout(cleanup, 700);
+        // maintain active state updates after smooth scroll
+        setTimeout(bottomObserveUpdate, 50);
+        setTimeout(bottomObserveUpdate, 350);
       }
     });
   });
@@ -139,6 +147,13 @@
   };
 
   let navIO = initNavObserver();
+  // Set initial active tab: hash if present, otherwise #hero
+  (function setInitialActive() {
+    const all = document.querySelectorAll('.menu a');
+    all.forEach(a => a.classList.remove('active'));
+    const hash = location.hash && document.querySelector(location.hash) ? location.hash : '#hero';
+    document.querySelector(`.menu a[href="${hash}"]`)?.classList.add('active');
+  })();
   window.addEventListener('resize', () => {
     // Re-init on resize to account for header height changes
     if (navIO && typeof navIO.disconnect === 'function') navIO.disconnect();
@@ -148,8 +163,9 @@
   // Helper: toggle back-to-top visibility and update active nav at bottom
   const bottomObserveUpdate = () => {
     const doc = document.documentElement;
-    const atBottom = Math.ceil(window.scrollY + window.innerHeight) >= doc.scrollHeight - 2;
-    if (atBottom) {
+    const scrollable = Math.max(0, doc.scrollHeight - window.innerHeight);
+    const nearBottom = scrollable > 240 && window.scrollY >= scrollable - 8;
+    if (nearBottom) {
       document.querySelectorAll('.menu a.active').forEach(a => a.classList.remove('active'));
       document.querySelector('.menu a[href="#contact"]')?.classList.add('active');
     }
@@ -160,6 +176,26 @@
   window.addEventListener('scroll', bottomObserveUpdate, { passive: true });
   // Re-evaluate on resize (viewport changes affect thresholds)
   window.addEventListener('resize', bottomObserveUpdate);
+
+  // 3D directional hint when scrolling between sections
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const down = y > lastY;
+    lastY = y;
+    // Find the closest section to the top
+    const header = document.querySelector('.site-header');
+    const anchorY = (header ? header.offsetHeight : 0) + 8;
+    const secs = Array.from(document.querySelectorAll('main section[id]'));
+    let current = secs[0];
+    for (const s of secs) {
+      if (s.getBoundingClientRect().top <= anchorY) current = s; else break;
+    }
+    if (!current) return;
+    const cls = down ? 'enter-from-bottom' : 'enter-from-top';
+    current.classList.add(cls);
+    setTimeout(() => current.classList.remove('enter-from-top', 'enter-from-bottom'), 500);
+  }, { passive: true });
 
 
   // (old simple highlighter removed in favor of updateActive)
