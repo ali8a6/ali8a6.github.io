@@ -29,7 +29,24 @@
   };
   navToggle?.addEventListener('click', () => {
     const open = menu?.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(!!open));
+    const isOpen = !!open;
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    const label = navToggle.querySelector('.label');
+    if (label) label.textContent = isOpen ? 'إغلاق' : 'القائمة';
+    navToggle.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+    navToggle.setAttribute('title', isOpen ? 'إغلاق' : 'القائمة');
+  });
+  // Close menu on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.classList.contains('open')) {
+      menu.classList.remove('open');
+      navToggle?.setAttribute('aria-expanded', 'false');
+      const label = navToggle?.querySelector('.label');
+      if (label) label.textContent = 'القائمة';
+      navToggle?.setAttribute('aria-label', 'فتح القائمة');
+      navToggle?.setAttribute('title', 'القائمة');
+      navToggle?.focus();
+    }
   });
   menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 

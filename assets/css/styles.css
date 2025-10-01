@@ -95,8 +95,23 @@ svg { display: block; }
 .menu a:hover::after, .menu a.active::after { transform: scaleX(1); }
 .menu a.active { color: var(--primary); }
 
-.nav-toggle { display: none; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); align-items: center; justify-content: center; gap: 3px; }
-.nav-toggle .bar { width: 18px; height: 2px; background: var(--text); display: block; }
+.nav-toggle {
+  display: none;
+  height: 40px;
+  padding: 0 .6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+.nav-toggle .icon { display: block; }
+.nav-toggle .icon-close { display: none; }
+.nav-toggle .label { font-weight: 700; font-size: .95rem; }
+.nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
+.nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
 .theme-toggle { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); display: grid; place-items: center; position: relative; overflow: hidden; }
 .theme-toggle .sun, .theme-toggle .moon { width: 18px; height: 18px; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1); transition: transform .25s ease, opacity .25s ease; }
@@ -235,6 +250,9 @@ html.no-js .reveal { opacity: 1; transform: none; }
   .nav-toggle { display: inline-flex; }
   .header-inner { grid-template-columns: auto 1fr auto; }
   .primary-nav { justify-self: end; }
+}
+@media (min-width: 861px) {
+  .nav-toggle .label { display: none; }
 }
 @media (min-width: 720px) {
   .cards .card { grid-column: span 6; }
