@@ -140,6 +140,7 @@ svg { display: block; }
 /* Skip link */
 .skip-link { position: fixed; inset-inline-start: 1rem; top: 1rem; transform: translateY(-200%); background: var(--primary); color: #fff; padding: .5rem .75rem; border-radius: 8px; z-index: 2000; }
 .skip-link:focus { transform: translateY(0); }
+.nojs-banner { background: #fee2e2; color: #7f1d1d; padding: .75rem 1rem; text-align: center; }
 
 /* Hero */
 .hero { padding-top: clamp(2rem, 6vh, 5rem); }
@@ -153,6 +154,7 @@ svg { display: block; }
 .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-2)); color: #fff; border: none; }
 .btn-ghost { background: transparent; }
 .btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 2px solid color-mix(in oklab, var(--primary) 40%, transparent); outline-offset: 2px; }
 
 .social { display: flex; gap: .75rem; align-items: center; margin-top: var(--space-5); padding: 0; list-style: none; }
 .social a { display: inline-flex; padding: .5rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); }
@@ -214,6 +216,8 @@ input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--prima
 /* Reveal on scroll */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
+/* If JS is disabled, show reveal elements to keep content visible */
+html.no-js .reveal { opacity: 1; transform: none; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

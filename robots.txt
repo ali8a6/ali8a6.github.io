@@ -1,0 +1,5 @@
+# robots.txt for ali8a6.github.io
+User-agent: *
+Allow: /
+
+Sitemap: https://ali8a6.github.io/sitemap.xml

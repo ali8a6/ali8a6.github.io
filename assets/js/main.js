@@ -1,6 +1,8 @@
 // Main interactions: theme toggle, mobile nav, scroll reveal, smooth anchors, contact form
 (function () {
   const root = document.documentElement;
+  // JS active: remove no-js for CSS fallbacks
+  root.classList.remove('no-js');
   const themeToggle = document.getElementById('themeToggle');
   const navToggle = document.querySelector('.nav-toggle');
   const menu = document.getElementById('site-menu');
@@ -43,6 +45,9 @@
         history.pushState(null, '', id);
         // Remove focus so :focus styles don't linger after scroll
         a.blur();
+          // maintain active state updates after smooth scroll
+          setTimeout(bottomObserveUpdate, 50);
+          setTimeout(bottomObserveUpdate, 350);
       }
     });
   });
@@ -123,8 +128,8 @@
     navIO = initNavObserver();
   });
 
-  // Bottom-of-page fallback: ensure #contact active at the very end
-  const bottomCheck = () => {
+  // Helper: toggle back-to-top visibility and update active nav at bottom
+  const bottomObserveUpdate = () => {
     const doc = document.documentElement;
     const atBottom = Math.ceil(window.scrollY + window.innerHeight) >= doc.scrollHeight - 2;
     if (atBottom) {
@@ -132,7 +137,13 @@
       document.querySelector('.menu a[href="#contact"]')?.classList.add('active');
     }
   };
-  window.addEventListener('scroll', bottomCheck, { passive: true });
+  // Run once on DOM ready and again after full load to set initial state
+  bottomObserveUpdate();
+  window.addEventListener('load', bottomObserveUpdate);
+  window.addEventListener('scroll', bottomObserveUpdate, { passive: true });
+  // Re-evaluate on resize (viewport changes affect thresholds)
+  window.addEventListener('resize', bottomObserveUpdate);
+
 
   // (old simple highlighter removed in favor of updateActive)
 })();
