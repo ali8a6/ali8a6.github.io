@@ -120,7 +120,7 @@
       try {
         // reCAPTCHA v3 token
         const runToken = () => new Promise((resolve) => {
-          if (!(window.grecaptcha && siteKey && !siteKey.includes('YOUR_RECAPTCHA_SITE_KEY'))) return resolve(null);
+          if (!(window.grecaptcha && siteKey)) return resolve(null);
           try {
             window.grecaptcha.ready(async () => {
               try {
@@ -129,7 +129,6 @@
               } catch (_) { resolve(null); }
             });
           } catch (_) { resolve(null); }
-          // Fallback resolve in case ready never fires
           setTimeout(() => resolve(null), 3000);
         });
         const token = await runToken();

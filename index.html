@@ -28,8 +28,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css" />
-  <!-- reCAPTCHA v3 -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LcjR9srAAAAAAB2WN61tA3deRHBGLrjv91t-Hom" async defer></script>
+  <!-- reCAPTCHA v3 (explicit render) -->
+  <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -355,13 +355,21 @@
             </div>
             <div class="form-status" role="status" aria-live="polite"></div>
           </form>
+          
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>© <span id="year"></span> جميع الحقوق محفوظة - Ali M. Nasser</p>
+        <div>
+          <p>© <span id="year"></span> جميع الحقوق محفوظة - Ali M. Nasser</p>
+          <p class="form-note" style="margin-top:.5rem">هذا الموقع محمي بواسطة reCAPTCHA من Google، وتسري عليه
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">سياسة الخصوصية</a>
+            و
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">شروط الخدمة</a>.
+          </p>
+        </div>
       </div>
     </footer>
 
