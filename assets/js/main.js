@@ -92,6 +92,64 @@
   if (year) year.textContent = new Date().getFullYear().toString();
 
   // Contact form is now just CTA links (no submission handling)
+  // Simple serverless contact form (optional)
+  const sForm = document.getElementById('simpleContactForm');
+  if (sForm) {
+    const status = sForm.querySelector('.form-status');
+    const endpoint = sForm.getAttribute('data-endpoint');
+    const siteKey = sForm.getAttribute('data-recaptcha-sitekey');
+    const action = sForm.getAttribute('data-recaptcha-action') || 'contact';
+    sForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!endpoint || endpoint.includes('REPLACE_ME')) {
+        status && (status.textContent = 'تم تعطيل النموذج حالياً. رجاءً استخدم “تواصل عبر مستقل” أو تيليجرام.');
+        return;
+      }
+      const fd = new FormData(sForm);
+      // Honeypot check
+      if ((fd.get('hp') || '').toString().trim() !== '') return;
+      // Basic client validation
+      const name = (fd.get('name') || '').toString().trim();
+      const email = (fd.get('email') || '').toString().trim();
+      const message = (fd.get('message') || '').toString().trim();
+      if (!name || !email || !message) {
+        status && (status.textContent = 'الرجاء إدخال الاسم والبريد والرسالة.');
+        return;
+      }
+      status && (status.textContent = 'جارٍ الإرسال…');
+      try {
+        // reCAPTCHA v3 token
+        const runToken = () => new Promise((resolve) => {
+          if (!(window.grecaptcha && siteKey && !siteKey.includes('YOUR_RECAPTCHA_SITE_KEY'))) return resolve(null);
+          try {
+            window.grecaptcha.ready(async () => {
+              try {
+                const token = await window.grecaptcha.execute(siteKey, { action });
+                resolve(token || null);
+              } catch (_) { resolve(null); }
+            });
+          } catch (_) { resolve(null); }
+          // Fallback resolve in case ready never fires
+          setTimeout(() => resolve(null), 3000);
+        });
+        const token = await runToken();
+        if (token) fd.append('g-recaptcha-response', token);
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: fd,
+        });
+        if (res.ok) {
+          status && (status.textContent = 'تم إرسال الرسالة بنجاح. سنعاود التواصل قريباً.');
+          sForm.reset();
+        } else {
+          status && (status.textContent = 'تعذّر الإرسال. جرّب لاحقاً أو استخدم وسائل التواصل الأخرى.');
+        }
+      } catch (err) {
+        status && (status.textContent = 'حدث خطأ غير متوقع أثناء الإرسال.');
+      }
+    });
+  }
 
   // Hero image loader: try multiple extensions if the primary is missing
   const heroImg = document.querySelector('.hero-photo img');

@@ -245,6 +245,8 @@ main { perspective: 1000px; }
 input, textarea { padding: .75rem .9rem; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: inherit; }
 input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--primary) 40%, transparent); outline-offset: 2px; }
 .form-actions { display: flex; gap: .75rem; align-items: center; }
+.form-status { color: var(--muted); font-size: .95rem; }
+.form-note { color: var(--muted); font-size: .9rem; }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); background: color-mix(in oklab, var(--surface) 92%, transparent); }
