@@ -95,6 +95,9 @@ svg { display: block; }
 .menu a:hover::after, .menu a.active::after { transform: scaleX(1); }
 .menu a.active { color: var(--primary); }
 
+/* Clear, accessible focus for interactive elements */
+:where(a, button, input, textarea):focus-visible { outline: 2px solid color-mix(in oklab, var(--primary) 50%, transparent); outline-offset: 2px; border-radius: 8px; }
+
 .nav-toggle { display: none; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); align-items: center; justify-content: center; gap: 3px; }
 .nav-toggle .bar { width: 18px; height: 2px; background: var(--text); display: block; }
 
@@ -211,6 +214,32 @@ input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--prima
 .footer-inner { display: flex; align-items: center; justify-content: center; padding: var(--space-5) 0; text-align: center; }
 .top-link { text-decoration: none; color: var(--primary); }
 
+/* Sticky header compact on scroll */
+.site-header.scrolled { box-shadow: var(--shadow); }
+.site-header.scrolled .header-inner { padding: .5rem 0; }
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  inset-inline-end: 1rem;
+  bottom: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 1200;
+}
+.back-to-top.show { opacity: 1; transform: none; }
+
 /* Reveal on scroll */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
@@ -218,6 +247,7 @@ input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--prima
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
 }
 
 /* Responsive */
