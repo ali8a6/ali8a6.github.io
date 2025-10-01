@@ -213,6 +213,12 @@ main { perspective: 1000px; }
 .chips { display: flex; flex-wrap: wrap; gap: .6rem; }
 .chip { padding: .5rem .75rem; border-radius: 999px; background: color-mix(in oklab, var(--primary) 14%, transparent); border: 1px solid var(--border); }
 
+/* Services / Features */
+.features { display: grid; gap: var(--space-5); grid-template-columns: repeat(12, 1fr); }
+.feature { grid-column: span 12; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-5); box-shadow: var(--shadow); }
+.feature h3 { margin-top: 0; margin-bottom: .5rem; font-size: 1.1rem; color: var(--primary); }
+.feature p { margin: 0; color: var(--muted); }
+
 /* Projects */
 .grid { display: grid; gap: var(--space-5); }
 .cards { grid-template-columns: repeat(12, 1fr); }
@@ -273,7 +279,9 @@ html.no-js .reveal { opacity: 1; transform: none; }
 }
 @media (min-width: 720px) {
   .cards .card { grid-column: span 6; }
+  .feature { grid-column: span 6; }
 }
 @media (min-width: 1040px) {
   .cards .card { grid-column: span 4; }
+  .feature { grid-column: span 3; }
 }

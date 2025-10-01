@@ -128,16 +128,16 @@
     const linkMap = new Map(navLinks.map(a => [a.getAttribute('href'), a]));
 
     // Clear previous active
-    navLinks.forEach(a => a.classList.remove('active'));
+    navLinks.forEach(a => { a.classList.remove('active'); a.removeAttribute('aria-current'); });
 
     const headerH = header ? header.offsetHeight : 0;
     const io = new IntersectionObserver((entries) => {
       entries.forEach(en => {
         if (en.isIntersecting) {
           const id = `#${en.target.id}`;
-          navLinks.forEach(a => a.classList.remove('active'));
+          navLinks.forEach(a => { a.classList.remove('active'); a.removeAttribute('aria-current'); });
           const link = linkMap.get(id);
-          if (link) link.classList.add('active');
+          if (link) { link.classList.add('active'); link.setAttribute('aria-current', 'page'); }
         }
       });
     }, { threshold: 0.25, rootMargin: `-${headerH + 8}px 0px 0px 0px` });
@@ -150,9 +150,10 @@
   // Set initial active tab: hash if present, otherwise #hero
   (function setInitialActive() {
     const all = document.querySelectorAll('.menu a');
-    all.forEach(a => a.classList.remove('active'));
+    all.forEach(a => { a.classList.remove('active'); a.removeAttribute('aria-current'); });
     const hash = location.hash && document.querySelector(location.hash) ? location.hash : '#hero';
-    document.querySelector(`.menu a[href="${hash}"]`)?.classList.add('active');
+    const current = document.querySelector(`.menu a[href="${hash}"]`);
+    if (current) { current.classList.add('active'); current.setAttribute('aria-current', 'page'); }
   })();
   window.addEventListener('resize', () => {
     // Re-init on resize to account for header height changes
@@ -166,8 +167,9 @@
     const scrollable = Math.max(0, doc.scrollHeight - window.innerHeight);
     const nearBottom = scrollable > 240 && window.scrollY >= scrollable - 8;
     if (nearBottom) {
-      document.querySelectorAll('.menu a.active').forEach(a => a.classList.remove('active'));
-      document.querySelector('.menu a[href="#contact"]')?.classList.add('active');
+      document.querySelectorAll('.menu a.active').forEach(a => { a.classList.remove('active'); a.removeAttribute('aria-current'); });
+      const contact = document.querySelector('.menu a[href="#contact"]');
+      if (contact) { contact.classList.add('active'); contact.setAttribute('aria-current', 'page'); }
     }
   };
   // Run once on DOM ready and again after full load to set initial state
