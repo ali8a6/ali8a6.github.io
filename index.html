@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="موقع تعريفي لمهندس تقنية معلومات" />
+    <meta name="theme-color" content="#0ea5e9" />
+  <meta property="og:title" content="علي محمد ناصر — مطور برمجيات" />
+  <meta property="og:description" content="مطور برمجيات متخصص في أنظمة إدارة الأعمال باستخدام Django وFlask وReact وLaravel وPostgreSQL." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+  <meta property="og:image" content="assets/images/profile.png" />
+  <title>علي محمد ناصر — مطور برمجيات</title>
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="assets/icons/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="الصفحة الرئيسية">
+          <img src="assets/icons/logo-mark.svg" alt="شعار" width="28" height="28" />
+          <span class="brand-text">علي محمد ناصر</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="القائمة الرئيسية">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" title="قائمة">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <ul id="site-menu" class="menu">
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#about">نبذة</a></li>
+            <li><a href="#skills">المهارات</a></li>
+            <li><a href="#projects">المشاريع</a></li>
+            <li><a href="#experience">الخبرات</a></li>
+            <li><a href="#contact">تواصل</a></li>
+          </ul>
+        </nav>
+
+        <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="تبديل النمط">
+          <span class="sun" aria-hidden="true"></span>
+          <span class="moon" aria-hidden="true"></span>
+          <span class="sr-only">تبديل بين الوضعين الفاتح والداكن</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section id="hero" class="section hero">
+        <div class="container hero-grid">
+          <div class="hero-content reveal">
+            <h1 class="title">مرحباً، أنا <span class="accent">علي محمد ناصر</span></h1>
+            <p class="subtitle">مطور برمجيات متخصص في تطوير أنظمة إدارة الأعمال؛ أعمل على بناء تطبيقات ويب باستخدام Django وFlask (خلفية)، React (واجهة)، وإدارة قواعد البيانات PostgreSQL مع اختبارات وحدية لضمان الجودة.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://mostaql.com/u/ali8a6/portfolio" target="_blank" rel="noopener">استعراض الأعمال</a>
+              <a class="btn btn-ghost" href="https://mostaql.com/project/create?freelancer=ali8a6" target="_blank" rel="noopener">تواصل معي</a>
+            </div>
+            <ul class="social">
+              <li>
+                <a href="https://www.linkedin.com/in/ali-m-naser-817a892a6" aria-label="حساب LinkedIn" title="LinkedIn" target="_blank" rel="noopener">
+                  <img src="assets/icons/linkedin.svg" alt="LinkedIn" width="22" height="22" />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/Ali8a6" aria-label="صفحتي على Facebook" title="Facebook" target="_blank" rel="noopener">
+                  <img src="assets/icons/facebook.svg" alt="Facebook" width="22" height="22" />
+                </a>
+              </li>
+              <li>
+                <a href="https://mostaql.com/u/ali8a6" aria-label="ملفي على مستقل" title="Mostaql" target="_blank" rel="noopener">
+                  <img src="assets/icons/external-link.svg" alt="Mostaql" width="22" height="22" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="hero-art reveal" aria-hidden="false">
+            <figure class="hero-photo">
+              <img src="assets/images/profile.png" alt="صورة شخصية" width="320" height="400" decoding="async" loading="eager" referrerpolicy="no-referrer" />
+            </figure>
+            <template id="hero-fallback">
+              <div class="hero-art-fallback">
+                <svg viewBox="0 0 240 240" width="320" height="320" role="img" aria-label="صورة رمزية بديلة">
+                  <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#0ea5e9" />
+                      <stop offset="100%" stop-color="#22d3ee" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="120" cy="120" r="110" fill="url(#g)" opacity="0.15" />
+                  <circle cx="120" cy="120" r="72" fill="url(#g)" />
+                  <g fill="#0b1220">
+                    <circle cx="100" cy="110" r="6" />
+                    <circle cx="140" cy="110" r="6" />
+                    <path d="M92 140 q28 16 56 0" stroke="#0b1220" stroke-width="6" fill="none" stroke-linecap="round" />
+                  </g>
+                </svg>
+              </div>
+            </template>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="container narrow reveal">
+          <h2 class="section-title">نبذة عني</h2>
+          <p>
+            مطور برمجيات متخصص في تطوير أنظمة إدارة الأعمال، أمتلك خبرة في تصميم وتنفيذ حلول مثل أنظمة إدارة الطلبات ونظام إدارة الموزعين. أعمل على تطوير تطبيقات ويب باستخدام Django وFlask وLaravel للبرمجة الخلفية وReact لبناء الواجهات، مع PostgreSQL لقواعد البيانات.
+          </p>
+          <ul class="bullets">
+            <li>تحليل المتطلبات وبناء قواعد بيانات فعّالة</li>
+            
+            <li>تقديم حلول عملية ترفع من كفاءة العمل وتحقق أهداف العملاء</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="section alt">
+        <div class="container reveal">
+          <h2 class="section-title">المهارات</h2>
+          <div class="chips">
+            <span class="chip">Django</span>
+            <span class="chip">Flask</span>
+            <span class="chip">React</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">PHP</span>
+            <span class="chip">Laravel</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">تصميم قواعد البيانات</span>
+            <span class="chip">البحث على الإنترنت</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="section">
+        <div class="container reveal">
+          <h2 class="section-title">مشاريع مختارة</h2>
+          <div class="grid cards">
+            <article class="card">
+              <div class="card-media" aria-hidden="true">
+                <img src="assets/images/portfolio-cover.jpg" alt="لقطة شاشة من معرض الأعمال على مستقل" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">معرض الأعمال على مستقل</h3>
+                <p class="card-text">اطّلع على عينات الأعمال والمشاريع عبر معرض الأعمال في مستقل.</p>
+                <div class="card-actions">
+                  <a class="btn btn-primary" href="https://mostaql.com/u/ali8a6/portfolio" target="_blank" rel="noopener">فتح المعرض</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media" aria-hidden="true">
+                <img src="assets/images/orders-management.png" alt="لقطة شاشة لنظام إدارة الطلبات" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">نظام إدارة الطلبات</h3>
+                <p class="card-text">تصميم وتنفيذ نظام لإدارة الطلبات يدعم دورة حياة الطلب وتقارير الأداء.</p>
+                <div class="tags">
+                  <span class="tag">Flask</span>
+                  <span class="tag">React</span>
+                  <span class="tag">PostgreSQL</span>
+                </div>
+                <div class="card-actions">
+                  <a class="btn btn-ghost" href="https://mostaql.com/project/create?freelancer=ali8a6" target="_blank" rel="noopener">تفاصيل</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media" aria-hidden="true">
+                <img src="assets/images/Distributor%20Management.jpg" alt="لقطة شاشة لنظام يومية الموزع" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">نظام إدارة الموزعين</h3>
+                <p class="card-text">حل لإدارة بيانات الموزعين ومتابعة الأداء مع لوحات تقارير.</p>
+                <div class="tags">
+                  <span class="tag">Django</span>
+                  <span class="tag">React</span>
+                  <span class="tag">PostgreSQL</span>
+                </div>
+                <div class="card-actions">
+                  <a class="btn btn-ghost" href="https://mostaql.com/project/create?freelancer=ali8a6" target="_blank" rel="noopener">تفاصيل</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="section alt">
+        <div class="container reveal">
+          <h2 class="section-title">الخبرات</h2>
+          <ol class="timeline">
+            <li>
+              <div class="time">منذ 2022    </div>
+              <div class="content">
+                <h3>مطور برامج مستقل</h3>
+                <p>تطوير حلول لإدارة الأعمال وبناء تطبيقات ويب وتكامل قواعد البيانات. تاريخ التسجيل على مستقل: 18 أبريل 2022.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section">
+        <div class="container narrow reveal">
+          <h2 class="section-title">تواصل معي</h2>
+          <form id="contactForm" class="contact-form">
+            <p class="subtitle">للتواصل السريع، استخدم زر “تواصل عبر مستقل” وسيتم فتح صفحة إنشاء مشروع موجهة لي.</p>
+            <div class="form-actions">
+              <a class="btn btn-primary" href="https://mostaql.com/project/create?freelancer=ali8a6" target="_blank" rel="noopener">تواصل عبر مستقل</a>
+              <a class="btn btn-ghost" href="https://mostaql.com/u/ali8a6/portfolio" target="_blank" rel="noopener">معرض الأعمال</a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> جميع الحقوق محفوظة — Ali M. Nasser</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+  </html>
