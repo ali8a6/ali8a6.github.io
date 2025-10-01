@@ -5,6 +5,7 @@
   const navToggle = document.querySelector('.nav-toggle');
   const menu = document.getElementById('site-menu');
   const year = document.getElementById('year');
+  const backToTop = document.getElementById('backToTop');
 
   // Persisted theme
   const saved = localStorage.getItem('theme');
@@ -135,4 +136,17 @@
   window.addEventListener('scroll', bottomCheck, { passive: true });
 
   // (old simple highlighter removed in favor of updateActive)
+
+  // Back-to-top button behavior
+  const toggleBackToTop = () => {
+    const scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+    if (backToTop) {
+      if (scrolled > 240) backToTop.classList.add('show');
+      else backToTop.classList.remove('show');
+    }
+  };
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  toggleBackToTop();
+
+  // No explicit click handler needed; global smooth-anchor handler handles #top
 })();

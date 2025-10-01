@@ -211,6 +211,34 @@ input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--prima
 .footer-inner { display: flex; align-items: center; justify-content: center; padding: var(--space-5) 0; text-align: center; }
 .top-link { text-decoration: none; color: var(--primary); }
 
+/* Back-to-top floating button */
+.back-to-top {
+  position: fixed;
+  left: 1rem; /* always bottom-left */
+  bottom: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  box-shadow: var(--shadow);
+  border: none;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none; /* prevent focus when hidden */
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 1100;
+}
+.back-to-top:hover { transform: translateY(4px); }
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 /* Reveal on scroll */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
@@ -231,6 +259,7 @@ input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--prima
   .nav-toggle { display: inline-flex; }
   .header-inner { grid-template-columns: auto 1fr auto; }
   .primary-nav { justify-self: end; }
+  .back-to-top { bottom: .85rem; left: .85rem; }
 }
 @media (min-width: 720px) {
   .cards .card { grid-column: span 6; }
