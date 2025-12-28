@@ -97,8 +97,6 @@
   if (sForm) {
     const status = sForm.querySelector('.form-status');
     const endpoint = sForm.getAttribute('data-endpoint');
-    const siteKey = sForm.getAttribute('data-recaptcha-sitekey');
-    const action = sForm.getAttribute('data-recaptcha-action') || 'contact';
     sForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!endpoint || endpoint.includes('REPLACE_ME')) {
@@ -118,21 +116,7 @@
       }
       status && (status.textContent = 'جارٍ الإرسال…');
       try {
-        // reCAPTCHA v3 token
-        const runToken = () => new Promise((resolve) => {
-          if (!(window.grecaptcha && siteKey)) return resolve(null);
-          try {
-            window.grecaptcha.ready(async () => {
-              try {
-                const token = await window.grecaptcha.execute(siteKey, { action });
-                resolve(token || null);
-              } catch (_) { resolve(null); }
-            });
-          } catch (_) { resolve(null); }
-          setTimeout(() => resolve(null), 3000);
-        });
-        const token = await runToken();
-        if (token) fd.append('g-recaptcha-response', token);
+        // reCAPTCHA removed — proceed without token
         const res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Accept': 'application/json' },
