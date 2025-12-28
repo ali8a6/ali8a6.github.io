@@ -287,3 +287,6 @@ html.no-js .reveal { opacity: 1; transform: none; }
   .cards .card { grid-column: span 4; }
   .feature { grid-column: span 3; }
 }
+
+/* Utility: honeypot (move inline styles to class to comply with CSP) */
+.honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
